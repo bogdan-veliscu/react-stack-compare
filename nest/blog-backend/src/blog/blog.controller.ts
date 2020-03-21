@@ -33,6 +33,7 @@ export class BlogController {
   // Fetch a particular post using ID
   @Get('post/:postID')
   async getPost(@Res() res, @Param('postID', new ValidateObjectId()) postID) {
+    console.log(`## trying to create post: ${postID}`);
     const post = await this.blogService.getPost(postID);
     if (!post) {
       throw new NotFoundException('Post does not exist!');
@@ -48,10 +49,10 @@ export class BlogController {
   }
 
   // Edit a particular post using ID
-  @Put('/edit')
+  @Put('/post/:postID')
   async editPost(
     @Res() res,
-    @Query('postID', new ValidateObjectId()) postID,
+    @Param('postID', new ValidateObjectId()) postID,
     @Body() createPostDTO: CreatePostDTO,
   ) {
     const editedPost = await this.blogService.editPost(postID, createPostDTO);
@@ -66,10 +67,10 @@ export class BlogController {
   }
 
   // Delete a post using ID
-  @Delete('/delete')
+  @Delete('/post/:postID')
   async deletePost(
     @Res() resizeBy,
-    @Query('postID', new ValidateObjectId()) postID,
+    @Param('postID', new ValidateObjectId()) postID,
   ) {
     const deletedPost = await this.blogService.deletePost(postID);
 
