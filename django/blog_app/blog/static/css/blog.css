@@ -1,7 +1,11 @@
 h1 {
-  color: red;
+  color: gray;
 }
 
 #logo {
-  width: 30%;
+  width: 10%;
+}
+
+.djangotwo {
+  border: 2px solid black;
 }
