@@ -3,6 +3,8 @@ import { render } from "react-dom";
 import { Switch, Link, Route } from "react-router-dom";
 import Signup from "./signup";
 import Login from "./login";
+import PostList from "./Posts";
+import Navbar from "./Navbar";
 
 class App extends Component {
   constructor(props) {
@@ -15,30 +17,31 @@ class App extends Component {
   }
 
   componentDidMount() {
-    fetch("api/lead")
-      .then((response) => {
-        if (response.status > 400) {
-          return this.setState(() => {
-            return { placeholder: "Something went wrong!" };
-          });
-        }
-        return response.json();
-      })
-      .then((data) => {
-        this.setState(() => {
-          return {
-            data,
-            loaded: true,
-          };
-        });
-      });
+    // fetch("api/lead")
+    //   .then((response) => {
+    //     if (response.status > 400) {
+    //       return this.setState(() => {
+    //         return { placeholder: "Something went wrong!" };
+    //       });
+    //     }
+    //     return response.json();
+    //   })
+    //   .then((data) => {
+    //     this.setState(() => {
+    //       return {
+    //         data,
+    //         loaded: true,
+    //       };
+    //     });
+    //   });
   }
 
   render() {
     return (
       <div className="site">
-        <nav>
-          <Link className={"nav-link"} to={"/"}>
+        <Navbar />
+        {/* <nav>
+          <Link className="nav-link" to={"/"}>
             Home
           </Link>
           <Link className={"nav-link"} to={"/login/"}>
@@ -47,14 +50,13 @@ class App extends Component {
           <Link className={"nav-link"} to={"/signup/"}>
             Signup
           </Link>
-        </nav>
+        </nav> */}
         <main>
-          <h1>Codeswiftr Blog</h1>
           <Switch>
             <Route exact path={"/login/"} component={Login} />
             <Route exact path={"/signup/"} component={Signup} />
 
-            <Route path={"/"} render={() => <div>Home again</div>} />
+            <Route path={"/"} component={PostList} />
           </Switch>
         </main>
       </div>
