@@ -28,7 +28,7 @@
     "webpack-dev-server": "^3.8.1"
   },
   "dependencies": {
-    "axios": "^0.19.2",
+    "axios": "^0.21.1",
     "django-react-csrftoken": "^1.0.4",
     "react-router-dom": "^5.1.2"
   }
